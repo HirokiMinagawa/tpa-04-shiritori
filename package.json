@@ -55,7 +55,9 @@
       "no-console": "off",
       "no-param-reassign": [
         "error",
-        { "props": false }
+        {
+          "props": false
+        }
       ],
       "quotes": [
         "error",

@@ -41,6 +41,7 @@
         </li>
       </ul>
     </div>
+    <button v-if="lost" v-on:click="resetGame" >Reset</button>
   </div>
 </template>
 
@@ -125,6 +126,26 @@ export default {
             this.errorMessage = message;
           }
         });
+    },
+    resetGame: function() {
+      apiService.resetGame(this.playerName)
+        .then((res) => {
+          if (!res.success) {
+            this.errorMessage = 'reset failed';
+          } else {
+            this.resetData();
+          }
+        });
+    },
+    resetData: function() {
+      this.message = '';
+      this.lost = false;
+      this.playing = false;
+      this.inputWord = '';
+      this.playedWords = [];
+      this.playerName = '';
+      this.score = 0;
+      this.errorMessage = '';
     },
   },
   mounted: function() {
