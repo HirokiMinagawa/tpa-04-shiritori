@@ -80,7 +80,10 @@ const resetGame = function(req, res) {
   //
   // TODO
   //
-  console.log('TODO: Reset a game identified by playerName');
+  const { playerName } = req.body;
+  if (typeof playerName !== 'string') res.json({ success: false });
+  gameInstances.set(playerName, new Game());
+  res.json({ success: true });
 };
 
 module.exports = {
